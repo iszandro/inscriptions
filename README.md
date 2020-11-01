@@ -1,5 +1,8 @@
 # Inscriptions
 
+![Unit tests](https://github.com/iszandro/inscriptions/workflows/Unit%20tests/badge.svg)
+![System tests](https://github.com/iszandro/inscriptions/workflows/System%20tests/badge.svg)
+
 `Rails` application.
 
 ## Ruby version

@@ -49,4 +49,11 @@ jobs:
         run: |
           bundle exec rails db:create
           bundle exec rails db:schema:load
+          bundle exec rails assets:precompile
           bundle exec rails test:system
+      - name: Archive tests result screenshots
+        if: failure()
+        uses: actions/upload-artifact@v1
+        with:
+          name: System tests screenshots
+          path: tmp/screenshots/
