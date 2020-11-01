@@ -4,4 +4,4 @@ potions:
   name: Potions Basic 1
   description: Basic course about potions in Howarts
   created_by: snape
-  status: 1
+  status: active

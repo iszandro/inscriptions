@@ -22,7 +22,6 @@ SimpleForm.setup do |config|
   config.error_method = :to_sentence
   # add validation classes to `input_field`
   config.input_field_error_class = "is-danger"
-  config.input_field_valid_class = "is-success"
   # vertical forms
   #
   # bulma vertical default_wrapper
@@ -35,7 +34,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: "label"
-    b.use :input, class: "input", wrap_with: { tag: "div", class: "control" }, error_class: "is-danger", valid_class: "is-success"
+    b.use :input, class: "input", wrap_with: { tag: "div", class: "control" }, error_class: "is-danger"
     b.use :full_error, wrap_with: { tag: "div", class: "help is-danger" }
     #b.use :hint, wrap_with: { tag: "small", class: "form-text text-muted" }
   end
@@ -98,7 +97,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: "label"
     b.wrapper tag: "div", class: "control" do |ba|
-      ba.use :input, class: "input", error_class: "is-danger", valid_class: "is-success"
+      ba.use :input, class: "input", error_class: "is-danger"
     end
     b.use :full_error, wrap_with: { tag: "div", class: "is-danger" }
     b.use :hint, wrap_with: { tag: "small", class: "help" }
