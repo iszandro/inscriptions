@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :teachers, controllers: { registrations: :registrations }
+  devise_for :teachers, controllers: { registrations: :registrations }, skip: :passwords
 
   root to: 'courses#index'
 
