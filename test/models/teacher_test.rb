@@ -19,4 +19,9 @@ class TeacherTest < ActiveSupport::TestCase
 
     assert teacher.valid?
   end
+
+  test '#name' do
+    teacher = teachers(:snape)
+    assert_equal 'Severus Snape', teacher.name
+  end
 end

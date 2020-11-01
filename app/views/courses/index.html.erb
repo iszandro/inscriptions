@@ -1,0 +1,9 @@
+<ul class="courses">
+  <% @courses.each do |course| %>
+    <li class="course">
+      <%= course.name %>
+      Created by <%= course.created_by.name %>
+      <%= course.description %>
+    </li>
+  <% end %>
+</ul>
