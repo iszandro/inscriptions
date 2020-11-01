@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_054858) do
+ActiveRecord::Schema.define(version: 2020_11_01_065651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2020_11_01_054858) do
     t.index ["created_by_id"], name: "index_courses_on_created_by_id"
     t.index ["discarded_at"], name: "index_courses_on_discarded_at"
     t.index ["name"], name: "index_courses_on_name", unique: true
+  end
+
+  create_table "inscriptions", force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_inscriptions_on_course_id"
+    t.index ["teacher_id", "course_id"], name: "index_inscriptions_on_teacher_id_and_course_id", unique: true
+    t.index ["teacher_id"], name: "index_inscriptions_on_teacher_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -57,5 +67,7 @@ ActiveRecord::Schema.define(version: 2020_11_01_054858) do
   end
 
   add_foreign_key "courses", "teachers", column: "created_by_id"
+  add_foreign_key "inscriptions", "courses"
+  add_foreign_key "inscriptions", "teachers"
   add_foreign_key "votes", "teachers", column: "voter_id"
 end

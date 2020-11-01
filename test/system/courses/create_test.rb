@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'application_system_test_case'
+
 module Courses
   class CreateTest < ApplicationSystemTestCase
     def setup
@@ -20,7 +22,7 @@ module Courses
       fill_in 'Name', with: 'Potions 1'
       fill_in 'Description', with: 'Beginner level course'
 
-      assert_difference 'Course.count' do
+      assert_difference -> { Course.count } => 1, -> { Inscription.count } => 1 do
         click_on 'Create Course'
       end
 

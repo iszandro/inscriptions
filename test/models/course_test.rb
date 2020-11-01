@@ -21,4 +21,14 @@ class CourseTest < ActiveSupport::TestCase
     refute new_course.valid?
     assert_equal ['has already been taken'], new_course.errors.messages[:name]
   end
+
+  test 'creating a course automatically enrolls the teacher' do
+    teacher = teachers(:snape)
+    course = Course.create(name: 'Test', created_by: teacher)
+
+    assert_equal 1, course.inscriptions.count
+
+    inscription = course.inscriptions.first
+    assert_equal teacher, inscription.teacher
+  end
 end

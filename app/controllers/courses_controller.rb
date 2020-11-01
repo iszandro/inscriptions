@@ -49,7 +49,7 @@ class CoursesController < ApplicationController
   end
 
   def find_course
-    @course = current_teacher.created_courses.find_by(id: params[:id])
+    @course = current_teacher.courses.find_by(id: params[:id])
 
     redirect_to root_path unless @course
   end
