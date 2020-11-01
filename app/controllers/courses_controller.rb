@@ -2,7 +2,7 @@
 
 class CoursesController < ApplicationController
   before_action :authenticate_teacher!, except: %i[index]
-  before_action :find_course, only: %i[edit update]
+  before_action :find_course, only: %i[edit update destroy]
 
   def index
     @courses = Course.includes(:created_by).all
@@ -29,6 +29,16 @@ class CoursesController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    if @course.discard!
+      redirect_to root_path, notice: 'Course removed!'
+    else
+      redirect_to root_path, notice: 'Course cannot be removed!'
+    end
+  end
+
+  # def show; end
 
   private
 

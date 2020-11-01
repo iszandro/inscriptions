@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '~> 4.7'
+gem 'discard', '~> 1.2'
 gem 'simple_form'
 
 group :development, :test do

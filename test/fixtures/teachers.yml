@@ -7,3 +7,12 @@ snape:
   skills:
     - Magic
     - Potions
+
+rolanda:
+  first_name: Rolanda
+  last_name: Hooch
+  email: rolanda@howarts.com
+  skills:
+    - Magic
+    - Fly
+    - Quidditch

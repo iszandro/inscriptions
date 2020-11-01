@@ -5,3 +5,9 @@ potions:
   description: Basic course about potions in Howarts
   created_by: snape
   status: active
+
+fly:
+  name: Fly with Nimbus 2000
+  description: Basic course to fly with Nimbus 2000
+  created_by: rolanda
+  status: active

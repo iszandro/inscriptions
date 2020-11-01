@@ -32,5 +32,11 @@ module Courses
       assert_equal @teacher, @course.created_by
       assert @course.active?
     end
+
+    test 'teacher cannot update course from another teacher' do
+      course = courses(:fly)
+      visit edit_course_path(course)
+      assert_current_path root_path
+    end
   end
 end
