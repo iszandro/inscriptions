@@ -16,6 +16,10 @@ class Course < ApplicationRecord
 
   after_create :enroll_course
 
+  def class_name
+    :course
+  end
+
   private
 
   def enroll_course
