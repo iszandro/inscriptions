@@ -4,5 +4,12 @@ Rails.application.routes.draw do
   devise_for :teachers, controllers: { registrations: :registrations }
 
   root to: 'courses#index'
-  resources :courses
+
+  resources :courses do
+    resources :votes, only: %i[create destroy]
+  end
+
+  resources :teachers do
+    resources :votes, only: %i[create destroy]
+  end
 end

@@ -26,19 +26,19 @@ class VoteTest < ActiveSupport::TestCase
 
   test 'voter count for teachers' do
     teacher = teachers(:rolanda)
-    assert teacher.votes.zero?
+    assert teacher.votes.size.zero?
 
-    Vote.create(voter: teacher, voteable: teacher)
-    assert_equal 1, teacher.votes
+    teacher.votes.create(voter: teacher)
+    assert_equal 1, teacher.votes.size
   end
 
   test 'voter count for courses' do
     teacher = teachers(:rolanda)
     course = courses(:fly)
 
-    assert course.votes.zero?
+    assert course.votes.size.zero?
 
-    Vote.create(voter: teacher, voteable: course)
-    assert_equal 1, course.votes
+    course.votes.create(voter: teacher)
+    assert_equal 1, course.votes.size
   end
 end
