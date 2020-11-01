@@ -7,6 +7,7 @@ class Course < ApplicationRecord
 
   belongs_to :created_by, class_name: 'Teacher'
   has_many :inscriptions
+  has_many :teachers, through: :inscriptions
   has_many :votes, as: :voteable
 
   validates :name, presence: true, uniqueness: true

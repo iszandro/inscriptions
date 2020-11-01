@@ -1,0 +1,17 @@
+<% if (inscription = current_teacher.inscription_from(course)) %>
+  <%= link_to course_inscription_path(course, inscription), method: :delete do %>
+    <span class="icon">
+      <i class="fas fa-minus-circle"></i>
+    </span>
+
+    <span>Leave</span>
+  <% end %>
+<% else %>
+  <%= link_to course_inscriptions_path(course), method: :post do %>
+    <span class="icon">
+      <i class="fas fa-plus"></i>
+    </span>
+
+    <span>Enroll</span>
+  <% end %>
+<% end %>

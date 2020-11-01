@@ -30,8 +30,14 @@
     <div class="is-flex is-flex-direction-row mt-3 is-justify-content-flex-end is-flex">
       <% if current_teacher %>
         <span class="mr-3 vote-<%= @course.id %>-course">
-          <%= render 'votes/vote_link', voteable: @course %>
+          <%= render 'votes/link', voteable: @course %>
         </span>
+
+        <% if @course.created_by != current_teacher %>
+          <span class="mr-3 vote-<%= @course.id %>-course">
+            <%= render 'inscriptions/link', course: @course %>
+          </span>
+        <% end %>
 
         <% if @course.created_by == current_teacher %>
           <%= link_to edit_course_path(@course), class: 'mr-3' do %>
@@ -50,6 +56,9 @@
         <% end %>
       <% end %>
     </div>
+
+    <h3 class="is-3 title mt-4">List of teachers</h3>
+    <%= render @course.teachers %>
   </div>
 
   <div class="column">

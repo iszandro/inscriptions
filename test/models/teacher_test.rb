@@ -20,6 +20,13 @@ class TeacherTest < ActiveSupport::TestCase
     assert teacher.valid?
   end
 
+  test '#inscription_from' do
+    teacher = teachers(:snape)
+
+    assert_equal inscriptions(:snape_potions), teacher.inscription_from(courses(:potions))
+    assert_nil teacher.inscription_from(courses(:fly))
+  end
+
   test '#name' do
     teacher = teachers(:snape)
     assert_equal 'Severus Snape', teacher.name

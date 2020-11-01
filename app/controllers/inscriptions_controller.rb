@@ -5,10 +5,11 @@ class InscriptionsController < ApplicationController
   before_action :find_course
 
   def create
-    if @course.inscriptions.create(teacher: current_teacher)
-      head :created
+    inscription = @course.inscriptions.build(teacher: current_teacher)
+    if inscription.save
+      redirect_to course_path(@course), notice: 'Inscription created'
     else
-      head :unprocessable_entity
+      redirect_to course_path(@course), notice: 'Cannot create inscription'
     end
   end
 
@@ -16,9 +17,9 @@ class InscriptionsController < ApplicationController
     inscription = @course.inscriptions.find_by(id: params[:id])
 
     if inscription&.destroy
-      head :ok
+      redirect_to course_path(@course), notice: 'Inscription cancelled'
     else
-      head :unprocessable_entity
+      redirect_to course_path(@course), notice: 'Cannot cancel inscription'
     end
   end
 

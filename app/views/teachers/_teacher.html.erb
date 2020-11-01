@@ -1,0 +1,27 @@
+<div class="box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= teacher.name %></strong> <small><%= teacher.email %></small>
+          <br>
+        </p>
+      </div>
+
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <% if current_teacher %>
+            <span class="mr-3 vote-<%= teacher.id %>-teacher">
+              <%= render 'votes/link', voteable: teacher %>
+            </span>
+          <% end %>
+        </div>
+      </nav>
+    </div>
+  </article>
+</div>

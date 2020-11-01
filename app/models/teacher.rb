@@ -10,6 +10,10 @@ class Teacher < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
+  def inscription_from(course)
+    inscriptions.find_by(course_id: course.id)
+  end
+
   def name
     "#{first_name} #{last_name}"
   end
