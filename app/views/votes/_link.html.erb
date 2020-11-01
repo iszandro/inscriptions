@@ -1,6 +1,6 @@
 <% if (vote = current_teacher.vote_from(voteable)) %>
   <%= link_to send("#{voteable.class.name.downcase}_vote_path", voteable, vote), method: :delete, remote: true do %>
-    <span class="icon icon-vote">
+    <span class="icon">
       <i class="fas fa-heart"></i>
     </span>
 
@@ -8,7 +8,7 @@
   <% end %>
 <% else %>
   <%= link_to send("#{voteable.class.name.downcase}_votes_path", voteable), method: :post, remote: true do %>
-    <span class="icon icon-vote">
+    <span class="icon">
       <i class="far fa-heart"></i>
     </span>
 

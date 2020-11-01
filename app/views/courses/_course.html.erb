@@ -19,15 +19,31 @@
       </div>
 
       <div class="content has-text-black">
-        <p class="has-text-danger">
-          <span class="icon icon-vote">
-            <i class="fas fa-heart"></i>
+        <p>
+          <span class="has-text-danger mr-3">
+            <span class="icon">
+              <i class="fas fa-heart"></i>
+            </span>
+
+            <span>(<%= course.votes_count %>)</span>
           </span>
 
-          <span>(<%= course.votes_count %>)</span>
+          <span class="has-text-black mr-3">
+            <span class="icon">
+              <i class="fas fa-user-friends"></i>
+            </span>
+
+            <span>(<%= course.inscriptions.count %>)</span>
+          </span>
+
+          <% if course.pending? %>
+            <span class="tag is-warning">Pending</span>
+          <% else %>
+            <span class="tag is-primary">Active</span>
+          <% end %>
         </p>
 
-        <p><%= course.description %></p>
+        <p><%= truncate(course.description, length: 100) %></p>
       </div>
     </div>
   <% end %>
