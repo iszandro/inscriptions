@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :teachers, only: :index do
     resources :votes, only: %i[create destroy], defaults: { format: :js }
   end
+
+  resource :profile, only: %i[show update]
 end

@@ -1,0 +1,15 @@
+<div class="columns mt-6">
+  <div class="column is-half is-offset-one-quarter card">
+    <h1 class="title is-1 has-text-centered">Profile</h1>
+
+    <%= simple_form_for(current_teacher, url: profile_path, html: { class: 'card-content' }) do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :email %>
+      <%= f.input :skills, label: 'Skills (separated by comma)', input_html: { value: f.object.skills.join(',') } %>
+
+      <%= f.button :submit, value: 'Update', class: 'is-medium is-fullwidth button is-success' %>
+    <% end %>
+  </div>
+</div>
+
