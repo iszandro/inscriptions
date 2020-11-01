@@ -7,7 +7,7 @@ class VotesController < ApplicationController
   def create
     @voteable.votes.create(voter: current_teacher)
 
-    render json: { votes: @voteable.votes.size }
+    render json: { votes: @voteable.votes.size }, status: :created
   end
 
   def destroy
@@ -25,5 +25,7 @@ class VotesController < ApplicationController
                 else
                   Teacher.find_by(id: params[:teacher_id])
                 end
+
+    redirect_to root_path unless @voteable
   end
 end

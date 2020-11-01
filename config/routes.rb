@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: 'courses#index'
 
   resources :courses do
+    resources :inscriptions, only: %i[create destroy]
     resources :votes, only: %i[create destroy]
   end
 
