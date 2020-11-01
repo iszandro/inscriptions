@@ -1,0 +1,15 @@
+<% if locals[:notification].present? %>
+  <div class="notification <%= locals[:is_success] && 'is-success' || 'is-danger' %>">
+    <button class="delete"></button>
+
+    <% if Array(locals[:notification]).length > 1 %>
+      <ul>
+        <% locals[:notification].each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= Array(locals[:notification]).first %>
+    <% end %>
+  </div>
+<% end %>
