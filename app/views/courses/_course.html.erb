@@ -1,25 +1,28 @@
-<article class="card column is-one-quarter">
-  <%= link_to course_path(course) do %>
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4"><%= course.name %></p>
-          <p class="subtitle is-6">By <%= course.created_by.name %></p>
-        </div>
+<article class="column is-one-quarter">
+  <div class="card">
+    <%= link_to course_path(course) do %>
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        </figure>
       </div>
 
-      <div class="content has-text-black">
-        <p>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+            </figure>
+          </div>
+
+          <div class="media-content">
+            <p class="title is-4"><%= course.name %></p>
+            <p class="subtitle is-6">By <%= course.created_by.name %></p>
+          </div>
+        </div>
+
+        <div class="content has-text-black">
+          <p>
           <span class="has-text-danger mr-3">
             <span class="icon">
               <i class="fas fa-heart"></i>
@@ -28,7 +31,7 @@
             <span>(<%= course.votes_count %>)</span>
           </span>
 
-          <span class="has-text-black mr-3">
+            <span class="has-text-black mr-3">
             <span class="icon">
               <i class="fas fa-user-friends"></i>
             </span>
@@ -36,15 +39,17 @@
             <span>(<%= course.inscriptions_count %>)</span>
           </span>
 
-          <% if course.pending? %>
-            <span class="tag is-warning">Pending</span>
-          <% else %>
-            <span class="tag is-primary">Active</span>
-          <% end %>
-        </p>
+            <% if course.pending? %>
+              <span class="tag is-warning">Pending</span>
+            <% else %>
+              <span class="tag is-primary">Active</span>
+            <% end %>
+          </p>
 
-        <p><%= truncate(course.description, length: 100) %></p>
+          <p><%= truncate(course.description, length: 100) %></p>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
 </article>

@@ -1,40 +1,43 @@
-<div class="box">
-  <article class="media">
-    <div class="media-left">
-      <figure class="image is-64x64">
-        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-      </figure>
-    </div>
-
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong><%= teacher.name %></strong> <small><%= teacher.email %></small>
-          <br>
-        </p>
-
-        <p>
-          <% teacher.skills.each do |skill| %>
-            <span class="tag is-black"><%= skill %></span>
-          <% end %>
-        </p>
+<div class="<%= params[:action] == 'index' && 'column' || 'mt-5' %>">
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+        </figure>
       </div>
 
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <% if current_teacher %>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><%= teacher.name %></strong> <small><%= teacher.email %></small>
+            <br>
+          </p>
+
+          <p>
+            <% teacher.skills.each do |skill| %>
+              <span class="tag is-black"><%= skill %></span>
+            <% end %>
+          </p>
+        </div>
+
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <% if current_teacher %>
             <span class="mr-3 vote-<%= teacher.id %>-teacher">
               <%= render 'votes/link', voteable: teacher %>
             </span>
-          <% end %>
+            <% end %>
 
-          <span class="icon">
+            <span class="icon">
             <i class="far fa-file-video"></i>
           </span>
 
-          <span>(<%= teacher.inscriptions_count %>)</span>
-        </div>
-      </nav>
-    </div>
-  </article>
+            <span>(<%= teacher.inscriptions_count %>)</span>
+          </div>
+        </nav>
+      </div>
+    </article>
+  </div>
+
 </div>
