@@ -40,14 +40,14 @@
         <% end %>
 
         <% if @course.created_by == current_teacher %>
-          <%= link_to edit_course_path(@course), class: 'mr-3' do %>
+          <%= link_to edit_course_path(@course), class: 'mr-3 has-text-primary' do %>
             <span class="icon">
               <i class="fas fa-pencil-alt"></i>
             </span>
             <span>Edit</span>
           <% end %>
 
-          <%= link_to course_path(@course), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <%= link_to course_path(@course), method: :delete, data: { confirm: 'Are you sure?' }, class: 'has-text-danger' do %>
             <span class="icon">
               <i class="fas fa-trash"></i>
             </span>

@@ -18,10 +18,16 @@
         </div>
       </div>
 
-      <div class="content">
-        <%= course.description %>
-        <br>
-        <small>likes</small>
+      <div class="content has-text-black">
+        <p class="has-text-danger">
+          <span class="icon icon-vote">
+            <i class="fas fa-heart"></i>
+          </span>
+
+          <span>(<%= course.votes_count %>)</span>
+        </p>
+
+        <p><%= course.description %></p>
       </div>
     </div>
   <% end %>
