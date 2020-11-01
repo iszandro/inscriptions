@@ -1,0 +1,5 @@
+var span = document.querySelector("span.vote-<%= @voteable.id %>-<%= @voteable.class.name.downcase %>");
+
+if (span) {
+  span.innerHTML = "<%= j(render 'vote_link', voteable: @voteable).html_safe %>";
+}

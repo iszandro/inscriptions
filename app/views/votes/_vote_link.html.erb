@@ -1,0 +1,17 @@
+<% if (vote = current_teacher.vote_from(voteable)) %>
+  <%= link_to course_vote_path(voteable, vote), method: :delete, remote: true do %>
+    <span class="icon icon-vote">
+      <i class="fas fa-heart"></i>
+    </span>
+
+    <span>(<%= voteable.votes_count %>)</span>
+  <% end %>
+<% else %>
+  <%= link_to course_votes_path(voteable), method: :post, remote: true do %>
+    <span class="icon icon-vote">
+      <i class="far fa-heart"></i>
+    </span>
+
+    <span>(<%= voteable.votes_count %>)</span>
+  <% end %>
+<% end %>

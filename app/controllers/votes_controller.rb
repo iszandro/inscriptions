@@ -6,15 +6,13 @@ class VotesController < ApplicationController
 
   def create
     @voteable.votes.create(voter: current_teacher)
-
-    render json: { votes: @voteable.votes.size }, status: :created
+    render 'votes/counter_update'
   end
 
   def destroy
     vote = @voteable.votes.find_by(id: params[:id])
     vote&.destroy
-
-    render json: { votes: @voteable.votes.size }
+    render 'votes/counter_update'
   end
 
   private

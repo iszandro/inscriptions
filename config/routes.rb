@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :inscriptions, only: %i[create destroy]
-    resources :votes, only: %i[create destroy]
+    resources :votes, only: %i[create destroy], defaults: { format: :js }
   end
 
   resources :teachers do
-    resources :votes, only: %i[create destroy]
+    resources :votes, only: %i[create destroy], defaults: { format: :js }
   end
 end

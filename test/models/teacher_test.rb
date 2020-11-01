@@ -24,4 +24,13 @@ class TeacherTest < ActiveSupport::TestCase
     teacher = teachers(:snape)
     assert_equal 'Severus Snape', teacher.name
   end
+
+  test '#vote_from' do
+    teacher = teachers(:snape)
+
+    assert_equal votes(:snape_vote_snape_teacher), teacher.vote_from(teacher)
+    assert_equal votes(:snape_vote_potions_course), teacher.vote_from(courses(:potions))
+    assert_nil teacher.vote_from(teachers(:rolanda))
+    assert_nil teacher.vote_from(courses(:fly))
+  end
 end

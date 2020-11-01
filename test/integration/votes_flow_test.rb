@@ -11,7 +11,8 @@ class VotesFlowTest < ActionDispatch::IntegrationTest
     assert_difference 'Vote.count' do
       post teacher_votes_path(teacher)
     end
-    assert_equal({ votes: 1 }, JSON.parse(response.body, symbolize_names: true))
+    assert_match %r{data-method=\\"delete\\"}, response.body
+    assert_match %r{class=\\"fas fa-heart\\"}, response.body
   end
 
   test 'teacher can vote a course' do
@@ -22,7 +23,8 @@ class VotesFlowTest < ActionDispatch::IntegrationTest
     assert_difference 'Vote.count' do
       post course_votes_path(course)
     end
-    assert_equal({ votes: 1 }, JSON.parse(response.body, symbolize_names: true))
+    assert_match %r{data-method=\\"delete\\"}, response.body
+    assert_match %r{class=\\"fas fa-heart\\"}, response.body
   end
 
   test 'teacher can remove vote from a teacher' do
@@ -35,7 +37,8 @@ class VotesFlowTest < ActionDispatch::IntegrationTest
     assert_difference -> { Vote.count } => -1 do
       delete teacher_vote_path(teacher, vote)
     end
-    assert_equal({ votes: 0 }, JSON.parse(response.body, symbolize_names: true))
+    assert_match %r{data-method=\\"post\\"}, response.body
+    assert_match %r{class=\\"far fa-heart\\"}, response.body
   end
 
   test 'teacher can remove vote from a course' do
@@ -48,7 +51,8 @@ class VotesFlowTest < ActionDispatch::IntegrationTest
     assert_difference -> { Vote.count } => -1 do
       delete course_vote_path(course, vote)
     end
-    assert_equal({ votes: 0 }, JSON.parse(response.body, symbolize_names: true))
+    assert_match %r{data-method=\\"post\\"}, response.body
+    assert_match %r{class=\\"far fa-heart\\"}, response.body
   end
 
   test 'teacher tries to remove a vote from a teacher' do
@@ -60,7 +64,8 @@ class VotesFlowTest < ActionDispatch::IntegrationTest
     assert_difference -> { Vote.count } => 0 do
       delete teacher_vote_path(teacher, -1)
     end
-    assert_equal({ votes: 0 }, JSON.parse(response.body, symbolize_names: true))
+    assert_match %r{data-method=\\"post\\"}, response.body
+    assert_match %r{class=\\"far fa-heart\\"}, response.body
   end
 
   test 'teacher tries to remove a vote from a course' do
@@ -72,6 +77,7 @@ class VotesFlowTest < ActionDispatch::IntegrationTest
     assert_difference -> { Vote.count } => 0 do
       delete course_vote_path(course, -1)
     end
-    assert_equal({ votes: 0 }, JSON.parse(response.body, symbolize_names: true))
+    assert_match %r{data-method=\\"post\\"}, response.body
+    assert_match %r{class=\\"far fa-heart\\"}, response.body
   end
 end

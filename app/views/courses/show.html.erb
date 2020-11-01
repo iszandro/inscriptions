@@ -29,12 +29,9 @@
 
     <div class="is-flex is-flex-direction-row mt-3 is-justify-content-flex-end is-flex">
       <% if current_teacher %>
-        <%= link_to course_votes_path(@course), class: 'mr-3' do %>
-          <span class="icon">
-            <i class="far fa-heart"></i>
-          </span>
-          <span>(<%= @course.votes.size %>)</span>
-        <% end %>
+        <span class="mr-3 vote-<%= @course.id %>-course">
+          <%= render 'votes/vote_link', voteable: @course %>
+        </span>
 
         <% if @course.created_by == current_teacher %>
           <%= link_to edit_course_path(@course), class: 'mr-3' do %>

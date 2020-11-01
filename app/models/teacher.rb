@@ -13,4 +13,8 @@ class Teacher < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  def vote_from(voteable)
+    voteable.votes.find_by(voter: self)
+  end
 end
