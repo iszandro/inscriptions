@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CoursesController < ApplicationController
-  before_action :authenticate_teacher!, except: %i[index]
+  before_action :authenticate_teacher!, except: %i[index show]
   before_action :find_course, only: %i[edit update destroy]
 
   def index
@@ -31,14 +31,16 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    if @course.discard!
+    if @course.discard
       redirect_to root_path, notice: 'Course removed!'
     else
       redirect_to root_path, notice: 'Course cannot be removed!'
     end
   end
-
-  # def show; end
+  
+  def show
+    @course = Course.find_by(id: params[:id])
+  end
 
   private
 

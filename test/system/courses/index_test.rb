@@ -3,7 +3,7 @@
 require 'application_system_test_case'
 
 module Courses
-  class ListAllTest < ApplicationSystemTestCase
+  class IndexTest < ApplicationSystemTestCase
     def setup
       @course = courses(:potions)
     end

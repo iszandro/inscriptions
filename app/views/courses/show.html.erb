@@ -1,0 +1,10 @@
+<h2><%= @course.name %></h2>
+
+<div><%= @course.created_by.name %></div>
+
+<p><%= @course.description %></p>
+
+<% if current_teacher %>
+  <%= button_to 'Remove Course', course_path(@course),
+                method: :delete, data: { confirm: 'Are you sure?' } if @course.created_by == current_teacher %>
+<% end %>
