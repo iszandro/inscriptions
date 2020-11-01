@@ -1,5 +1,19 @@
 <%= simple_form_for @course do |f| %>
   <%= f.input :name %>
   <%= f.input :description, input_html: { class: 'textarea' } %>
+
+  <div class="field">
+    <label class="label" for="course_status">Status</label>
+    <div class="control">
+      <div class="select">
+        <select id="course_status" name="course[status]">
+          <% Course.statuses.each do |label, _value| %>
+            <option value="<%= label %>" <%= @course.status == label && 'selected' || '' %>><%= label.titleize %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+
   <%= f.button :submit, class: 'button is-primary' %>
 <% end %>
