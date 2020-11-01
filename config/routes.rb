@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :votes, only: %i[create destroy], defaults: { format: :js }
   end
 
-  resources :teachers do
+  resources :teachers, only: :index do
     resources :votes, only: %i[create destroy], defaults: { format: :js }
   end
 end
