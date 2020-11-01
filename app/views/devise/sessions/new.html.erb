@@ -1,0 +1,37 @@
+<div class="columns mt-6">
+  <div class="column is-half is-offset-one-quarter card">
+    <h1 class="title is-1 has-text-centered">Log in</h1>
+
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'card-content' }) do |f| %>
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" name="teacher[email]" type="email" placeholder="Email">
+
+          <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+
+          <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" name="teacher[password]" type="password" placeholder="Password">
+          <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+        </p>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <%= f.input :remember_me, as: :boolean %>
+      <% end %>
+
+      <%= f.button :submit, value: 'Sign in', class: 'is-medium is-fullwidth button is-success' %>
+    <% end %>
+  </div>
+</div>
+

@@ -15,7 +15,7 @@ module Registrations
       fill_in 'Password confirmation', with: 'batman'
 
       assert_difference 'Teacher.count' do
-        click_on 'Sign up'
+        within('form') { click_on 'Sign up' }
         assert_current_path root_path
       end
 

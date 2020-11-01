@@ -14,20 +14,20 @@ module Courses
       sign_out @teacher
       visit course_path(@course)
       assert_current_path course_path(@course)
-      refute_match /Remove Course/, page.body
+      refute_css '.fas.fa-trash'
     end
 
     test 'teacher can see his course' do
       visit course_path(@course)
       assert_current_path course_path(@course)
-      assert_match /Remove Course/, page.body
+      assert_css '.fas.fa-trash'
     end
 
     test 'teacher can see course from another teacher' do
       course = courses(:fly)
       visit course_path(course)
       assert_current_path course_path(course)
-      refute_match /Remove Course/, page.body
+      refute_css '.fas.fa-trash'
     end
   end
 end

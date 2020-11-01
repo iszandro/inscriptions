@@ -1,10 +1,48 @@
-<h2><%= @course.name %></h2>
+<div class="columns">
+  <div class="column">
+    <div class="notification is-primary">
+      <h1 class="title is-1"><%= @course.name %></h1>
+      <div>Created by <%= @course.created_by.name %></div>
+    </div>
+  </div>
+</div>
 
-<div><%= @course.created_by.name %></div>
+<div class="columns">
+  <div class="column is-two-thirds">
+    <figure class="image is-2by1">
+      <img src="https://bulma.io/images/placeholders/256x256.png">
+    </figure>
 
-<p><%= @course.description %></p>
+    <div class="is-flex is-flex-direction-row mt-3 is-justify-content-flex-end is-flex">
+      <% if current_teacher %>
+        <%= link_to course_votes_path(@course), class: 'mr-3' do %>
+          <span class="icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <span>(<%= @course.votes.size %>)</span>
+        <% end %>
 
-<% if current_teacher %>
-  <%= button_to 'Remove Course', course_path(@course),
-                method: :delete, data: { confirm: 'Are you sure?' } if @course.created_by == current_teacher %>
-<% end %>
+        <% if @course.created_by == current_teacher %>
+          <%= link_to edit_course_path(@course), class: 'mr-3' do %>
+            <span class="icon">
+              <i class="fas fa-pencil-alt"></i>
+            </span>
+            <span>Edit</span>
+          <% end %>
+
+          <%= link_to course_path(@course), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="icon">
+              <i class="fas fa-trash"></i>
+            </span>
+            <span>Delete</span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="column">
+    <h3 class="is-3 title">Description</h3>
+    <p><%= @course.description %></p>
+  </div>
+</div>
