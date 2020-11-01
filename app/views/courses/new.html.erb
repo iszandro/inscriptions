@@ -1,5 +1,19 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <%= link_to root_path do %>
+        <span class="icon is-small">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </span>
+        <span>Courses</span>
+      <% end %>
+    </li>
+    <li class="is-active"><%= link_to 'New Course', '#', aria: { current: :page } %></li>
+  </ul>
+</nav>
+
 <div class="columns mt-6">
-  <div class="column is-half is-offset-one-quarter card">
+  <div class="column is-three-fifths is-offset-one-fifth card">
     <h1 class="title is-1 has-text-centered">New course</h1>
 
     <%= render 'form' %>
