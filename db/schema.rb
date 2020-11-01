@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_021139) do
+ActiveRecord::Schema.define(version: 2020_11_01_054858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_11_01_021139) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
+    t.integer "votes", default: 0
     t.index ["created_by_id"], name: "index_courses_on_created_by_id"
     t.index ["discarded_at"], name: "index_courses_on_discarded_at"
     t.index ["name"], name: "index_courses_on_name", unique: true
@@ -39,9 +40,22 @@ ActiveRecord::Schema.define(version: 2020_11_01_021139) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "votes", default: 0
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "voter_id"
+    t.string "voteable_type"
+    t.bigint "voteable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
+    t.index ["voter_id", "voteable_id", "voteable_type"], name: "index_votes_on_voter_id_and_voteable_id_and_voteable_type", unique: true
+    t.index ["voter_id"], name: "index_votes_on_voter_id"
+  end
+
   add_foreign_key "courses", "teachers", column: "created_by_id"
+  add_foreign_key "votes", "teachers", column: "voter_id"
 end

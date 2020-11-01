@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+snape_vote_potions_course:
+  voter: snape
+  voteable: potions (Course)
+
+snape_vote_snape_teacher:
+  voter: snape
+  voteable: snape (Teacher)
